@@ -1,0 +1,55 @@
+<div class="" *ngIf="veiculos$ | async as veiculos">
+  <div class="container">
+    <div class="card col-sm-12 p-0">
+      <h5 class="card-header">Modelo do veículo</h5>
+      <div class="card-body">
+        <form [formGroup]="contactForm" (change)="submit()">
+          <select formControlName="veiculo" class="form-select">
+            <option [ngValue]="null" disabled>Selecione o modelo</option>
+            <option *ngFor="let veiculo of veiculos" [ngValue]="veiculo">
+              {{ veiculo.vehicle }}
+            </option>
+          </select>
+        </form>
+      </div>
+    </div>
+
+    <div *ngIf="contactForm.value.veiculo != null; else elseBlock">
+      <div class="card-group mx-auto mt-3">
+        <app-cartao-info
+          class="col-4"
+          titulo="Total de Vendas"
+          [dado]="contactForm.value.veiculo.volumetotal"
+        ></app-cartao-info>
+
+        <app-cartao-info
+          class="col-4"
+          titulo="Conectados"
+          [dado]="contactForm.value.veiculo.connected"
+        ></app-cartao-info>
+
+        <app-cartao-info
+          class="col-4"
+          titulo="Update Software"
+          [dado]="contactForm.value.veiculo.softwareUpdates"
+        ></app-cartao-info>
+      </div>
+
+      <div class="row my-4">
+        <div class="col-md-6 mx-auto">
+          <img
+            class="img-fluid d-none d-sm-block"
+            src="assets/img/modelos/{{ contactForm.value.veiculo.vehicle }}.png"
+            alt="Imagem de um carro para o login"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #elseBlock>
+    <div class="card col-sm-6 mx-auto my-5 p-0 text-center">
+      <h5 class="card-header border">Não há modelo selecionado</h5>
+    </div>
+  </ng-template>
+</div>

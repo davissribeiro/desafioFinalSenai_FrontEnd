@@ -1,0 +1,13 @@
+<div [ngClass]="{ 'active-menu': mostraMenu }">
+  <div class="menu-bar">
+    <i class="fa fa-window-close fa-2x cursor" (click)="abreMenu()"> </i>
+    <img
+      class="img-fluid d-none d-sm-inline col-8 mx-4"
+      src="assets/img/logo.png"
+      alt="Imagem do logo da Ford"
+    />
+    <ng-content></ng-content>
+  </div>
+
+  <div class="overlay" (click)="abreMenu()"></div>
+</div>

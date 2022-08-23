@@ -1,0 +1,54 @@
+<div class="pb-5">
+  <table class="table table-bordered">
+    <thead class="bg-primary text-white">
+      <tr>
+        <th scope="col">Código Vin</th>
+        <th scope="col">Odômetro</th>
+        <th scope="col">Pressão do Pneu</th>
+        <th scope="col">Status</th>
+        <th scope="col">Status da Bateria</th>
+        <th scope="col">Nível do Combustível</th>
+        <th scope="col">Latitude</th>
+        <th scope="col">Longitude</th>
+      </tr>
+    </thead>
+    <tbody class="text-center align-middle">
+      <tr *ngIf="codigoVin$ | async as codigoVin; else elseBlock">
+        <td>
+          <input
+            class="w-100 p-2 form-control border border-dark"
+            [formControl]="codigoVinInput"
+          />
+        </td>
+        <td>{{ codigoVin.odometer }} Km</td>
+        <td>{{ codigoVin.tirePressure }}</td>
+        <td>{{ codigoVin.status }}</td>
+        <td>{{ codigoVin.batteryStatus }}</td>
+        <td>{{ codigoVin.fuelLevel }}%</td>
+        <td>{{ codigoVin.lat }}</td>
+        <td>{{ codigoVin.long }}</td>
+      </tr>
+    </tbody>
+    <tfoot class="bg-primary">
+      <tr>
+        <td colspan="8"></td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <ng-template #elseBlock>
+    <td class="p-2">
+      <input
+        class="w-100 form-control border border-primary"
+        [formControl]="codigoVinInput"
+      />
+    </td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+  </ng-template>
+</div>
