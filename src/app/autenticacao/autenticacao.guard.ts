@@ -24,14 +24,11 @@ export class AutenticacaoGuard implements CanActivate {
     | boolean
     | UrlTree {
       if (this.usuarioService.estaLogado()) {
-
         console.log('Autorizado!');
-
         return true;
       }
       alert('Não autorizado!');
       console.log('Não autorizado!');
-
       this.router.navigate(['']);
       return false;
   }
